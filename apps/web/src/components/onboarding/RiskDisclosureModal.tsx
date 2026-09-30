@@ -28,7 +28,9 @@ export function RiskDisclosureModal({
   // Always call the latest onCancel from the key handler without re-running
   // the focus effect (which must run exactly once per open/close).
   const onCancelRef = useRef(onCancel);
-  onCancelRef.current = onCancel;
+  useEffect(() => {
+    onCancelRef.current = onCancel;
+  });
 
   // Focus management: move focus into the dialog on open and hand it back to
   // the element that opened it on close. The modal is mounted only while open,

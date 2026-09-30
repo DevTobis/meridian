@@ -137,6 +137,8 @@ describe("RiskDisclosureModal focus management", () => {
   it("leaves Tab alone between elements in the middle of the dialog", () => {
     renderWithTrigger();
     const checkbox = screen.getByTestId("risk-disclosure-acknowledgement");
+    // Enable accept so the checkbox is a middle stop, not the last one.
+    fireEvent.click(checkbox);
     checkbox.focus();
 
     const notPrevented = fireEvent.keyDown(checkbox, { key: "Tab" });

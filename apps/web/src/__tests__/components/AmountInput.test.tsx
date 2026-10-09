@@ -69,7 +69,9 @@ describe("AmountInput — accessible name", () => {
   it("defines the label key in both locales with a {{currency}} placeholder", () => {
     expect(en.vaultPanel.amountAriaLabel).toContain("{{currency}}");
     expect(fr.vaultPanel.amountAriaLabel).toContain("{{currency}}");
-    expect(fr.vaultPanel.amountAriaLabel).not.toBe(en.vaultPanel.amountAriaLabel);
+    expect(fr.vaultPanel.amountAriaLabel).not.toBe(
+      en.vaultPanel.amountAriaLabel
+    );
   });
 });
 

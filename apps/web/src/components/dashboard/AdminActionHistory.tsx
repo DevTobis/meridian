@@ -40,9 +40,11 @@ function formatTimestamp(iso: string, t: TFunction, locale: string): string {
   const diffMs = now.getTime() - date.getTime();
   const diffMins = Math.floor(diffMs / 60000);
   if (diffMins < 1) return t("adminHistory.time.justNow");
-  if (diffMins < 60) return t("adminHistory.time.minutesAgo", { count: diffMins });
+  if (diffMins < 60)
+    return t("adminHistory.time.minutesAgo", { count: diffMins });
   const diffHours = Math.floor(diffMins / 60);
-  if (diffHours < 24) return t("adminHistory.time.hoursAgo", { count: diffHours });
+  if (diffHours < 24)
+    return t("adminHistory.time.hoursAgo", { count: diffHours });
   const diffDays = Math.floor(diffHours / 24);
   if (diffDays < 7) return t("adminHistory.time.daysAgo", { count: diffDays });
   return date.toLocaleDateString(locale);

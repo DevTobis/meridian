@@ -49,9 +49,8 @@ export function WalletConnect() {
   // Move focus into the menu when it opens so arrow keys work immediately.
   useEffect(() => {
     if (!pickerOpen) return;
-    const items = menuRef.current?.querySelectorAll<HTMLElement>(
-      '[role="menuitem"]'
-    );
+    const items =
+      menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]');
     if (!items || items.length === 0) return;
     const target =
       openFocusRef.current === "last" ? items[items.length - 1] : items[0];
@@ -98,9 +97,8 @@ export function WalletConnect() {
       openFocusRef.current = e.key === "ArrowUp" ? "last" : "first";
       if (pickerOpen) {
         // Already open: just move focus into the menu.
-        const items = menuRef.current?.querySelectorAll<HTMLElement>(
-          '[role="menuitem"]'
-        );
+        const items =
+          menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]');
         if (items && items.length > 0) {
           (e.key === "ArrowUp" ? items[items.length - 1] : items[0]).focus();
         }

@@ -170,7 +170,11 @@ describe("AdminActionHistory badge labels", () => {
   ];
 
   it("renders English badge labels for every known action type", () => {
-    mockActions(types.map((t, i) => action({ id: String(i), type: t, timestamp: ago(MINUTE) })));
+    mockActions(
+      types.map((t, i) =>
+        action({ id: String(i), type: t, timestamp: ago(MINUTE) })
+      )
+    );
     renderHistory("en");
 
     for (const label of [
@@ -186,7 +190,11 @@ describe("AdminActionHistory badge labels", () => {
   });
 
   it("renders French badge labels and no English ones", () => {
-    mockActions(types.map((t, i) => action({ id: String(i), type: t, timestamp: ago(MINUTE) })));
+    mockActions(
+      types.map((t, i) =>
+        action({ id: String(i), type: t, timestamp: ago(MINUTE) })
+      )
+    );
     renderHistory("fr");
 
     for (const label of [
@@ -220,22 +228,27 @@ describe("AdminActionHistory relative timestamps", () => {
     [3 * HOUR, "3 hours ago", "il y a 3 heures"],
     [1 * DAY, "1 day ago", "il y a 1 jour"],
     [4 * DAY, "4 days ago", "il y a 4 jours"],
-  ])("formats %ims ago with correct pluralization", (elapsed, enText, frText) => {
-    mockActions([action({ type: "set_admin", timestamp: ago(elapsed) })]);
-    const { unmount } = renderHistory("en");
-    expect(screen.getByText(enText)).toBeDefined();
-    unmount();
+  ])(
+    "formats %ims ago with correct pluralization",
+    (elapsed, enText, frText) => {
+      mockActions([action({ type: "set_admin", timestamp: ago(elapsed) })]);
+      const { unmount } = renderHistory("en");
+      expect(screen.getByText(enText)).toBeDefined();
+      unmount();
 
-    renderHistory("fr");
-    expect(screen.getByText(frText)).toBeDefined();
-  });
+      renderHistory("fr");
+      expect(screen.getByText(frText)).toBeDefined();
+    }
+  );
 
   it("falls back to a locale-formatted date after a week", () => {
     const iso = ago(10 * DAY);
     mockActions([action({ type: "set_admin", timestamp: iso })]);
     renderHistory("fr");
 
-    expect(screen.getByText(new Date(iso).toLocaleDateString("fr"))).toBeDefined();
+    expect(
+      screen.getByText(new Date(iso).toLocaleDateString("fr"))
+    ).toBeDefined();
   });
 });
 
